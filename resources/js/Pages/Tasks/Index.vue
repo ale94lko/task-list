@@ -26,6 +26,9 @@ export default {
     showPreviewMenu() {
       return this.showPreview || !this.isEmpty(this.content);
     },
+    isDisabled() {
+      return this.content === ''
+    },
   },
   methods: {
     onFocus(event) {
@@ -70,11 +73,30 @@ export default {
     </div>
     <div class="actions" v-if="showPreviewMenu">
       <div class="shortcuts">
-        <button class="btn">Open</button>
+        <button class="btn btn-secondary has-border open-btn"
+          v-bind:class="{ 'disabled': isDisabled }">
+          Open
+        </button>
+        <button class="btn has-border"
+          v-bind:class="{ 'disabled': isDisabled }">
+          Today
+        </button>
+        <button class="btn has-border"
+          v-bind:class="{ 'disabled': isDisabled }">
+          Public
+        </button>
+        <button class="btn has-border"
+          v-bind:class="{ 'disabled': isDisabled }">
+          Highlight
+        </button>
+        <button class="btn has-border"
+          v-bind:class="{ 'disabled': isDisabled }">
+          Estimation
+        </button>
       </div>
       <div class="action-buttons">
         <button class="btn btn-secondary" v-on:click="cancel()">Cancel</button>
-        <button v-if="content === ''" class="btn btn-primary">Ok</button>
+        <button v-if="isDisabled" class="btn btn-primary">Ok</button>
         <button v-else v-on:click="add()" class="btn btn-primary">Add</button>
       </div>
     </div>

@@ -35,23 +35,45 @@
     }
 
     .btn {
-        height: 40px;
+        height: 35px;
         margin: 3px;
         padding: 5px 24px;
         border-radius: 4px;
 
         &.btn-primary {
-            background-color: #0D55CF;
+            background-color: #0d55cf;
             color: #fff;
             border: none;
             cursor: pointer;
         }
 
         &.btn-secondary {
-            background-color: #EAF0F5;
+            background-color: #eaf0f5;
             color: #04142f;
             border: none;
             cursor: pointer;
         }
+
+        &.has-border {
+            border: 1px solid #e0e4e6;
+        }
+
+        &.disabled {
+            color: #c2c7d0;
+            cursor: default;
+
+            &.btn-secondary {
+                background-color: #f2f5f8;
+            }
+
+            &.has-border {
+                border: 1px solid #eaedee;
+            }
+        }
+
+    }
+
+    .open-btn {
+        margin-right: 25px;
     }
 }
