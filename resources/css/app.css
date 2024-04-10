@@ -7,6 +7,19 @@
     flex-direction: column;
     padding: 50px;
 
+    ul {
+        margin: 10px;
+
+        li {
+            display: flex;
+
+            input {
+                margin: 0 5px;
+                align-self: center;
+            }
+        }
+    }
+
     .add {
         padding-bottom: 10px;
         border: 1px solid #f1f3f4;
@@ -75,5 +88,37 @@
 
     .open-btn {
         margin-right: 25px;
+    }
+
+    .important {
+        padding: 1px 5px;
+        background-color: #dbc7ff;
+        color: #702ee6;
+        font-weight: bold;
+        border-radius: 7px;
+    }
+
+    .somebody {
+        padding: 1px 5px;
+        background-color: #adf0d9;
+        color: #1cb180;
+        font-weight: bold;
+        border-radius: 7px;
+    }
+
+    .email {
+        padding: 1px 5px;
+        background-color: #ffe6c7;
+        color: #f58e0a;
+        font-weight: bold;
+        border-radius: 7px;
+    }
+
+    .link {
+        padding: 1px 5px;
+        background-color: #d6ebff;
+        color: #007fff;
+        font-weight: bold;
+        border-radius: 7px;
     }
 }

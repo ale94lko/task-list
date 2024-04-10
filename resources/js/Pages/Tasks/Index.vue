@@ -11,12 +11,18 @@ defineProps({
 
 </script>
 <script>
+const emailRegEx =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const urlRegex = /(http[s]?:\/\/)?([^\s(["<,>]*\.[^\s[",><]*)/gi;
+
+
 export default {
   data() {
     return {
       taskList: [],
       content: '',
       showPreview: false,
+      selectedTask: null,
     }
   },
   mounted() {
@@ -54,6 +60,22 @@ export default {
       this.taskList.push(newTask)
       this.content = '';
       this.showPreview = false;
+    },
+    getHtmlContent(content) {
+      let arrayMap = content.split(' ')
+      for (let [index, word] of Object.entries(arrayMap)) {
+        if (word.charAt(0) === '#') {
+          arrayMap[index] = '<span class="important">' + word + '</span>'
+        } else if (word.charAt(0) === '@') {
+          arrayMap[index] = '<span class="somebody">' + word.substring(1) + '</span>'
+        } else if (emailRegEx.test(word)) {
+          arrayMap[index] = '<span class="email">Mail</span>'
+        } else if (urlRegex.test(word)) {
+          arrayMap[index] = '<span class="link">Link</span>'
+        }
+      }
+
+      return arrayMap.join(' ');
     },
     isEmpty(val) {
       return val === undefined || val === null || val.trim() === '';
@@ -101,8 +123,9 @@ export default {
       </div>
     </div>
     <ul>
-      <li v-for="task in taskList" :key="task.id">
-        {{ task.content }}
+      <li v-for="(task, index) in taskList" :key="task.id">
+        <input type="checkbox">
+        <span v-html="getHtmlContent(task.content)"></span>
       </li>
     </ul>
   </div>
