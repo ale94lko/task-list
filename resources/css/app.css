@@ -7,6 +7,11 @@
     flex-direction: column;
     padding: 50px;
 
+    img {
+        width: 25px;
+        margin-right: 10px;
+    }
+
     ul {
         margin: 10px;
 
@@ -21,10 +26,12 @@
     }
 
     .add {
+        display: flex;
         padding-bottom: 10px;
         border: 1px solid #f1f3f4;
 
         input {
+            flex: 1;
             border: none;
         }
 
@@ -43,11 +50,18 @@
         box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
 
         .shortcuts {
+            display: flex;
             flex: 1;
+        }
+
+        .action-buttons {
+            display: flex;
         }
     }
 
     .btn {
+        display: flex;
+        flex-direction: row;
         height: 35px;
         margin: 3px;
         padding: 5px 24px;
@@ -75,6 +89,10 @@
             color: #c2c7d0;
             cursor: default;
 
+            img {
+                color: #c2c7d0;
+            }
+
             &.btn-secondary {
                 background-color: #f2f5f8;
             }
@@ -96,6 +114,7 @@
         color: #702ee6;
         font-weight: bold;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .somebody {
@@ -104,6 +123,7 @@
         color: #1cb180;
         font-weight: bold;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .email {
@@ -112,6 +132,7 @@
         color: #f58e0a;
         font-weight: bold;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .link {
@@ -120,5 +141,6 @@
         color: #007fff;
         font-weight: bold;
         border-radius: 7px;
+        cursor: pointer;
     }
 }

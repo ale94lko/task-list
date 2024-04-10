@@ -1,6 +1,5 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-//import { Icon } from '@iconify/vue';
 
 defineProps({
   tasks: {
@@ -14,7 +13,6 @@ defineProps({
 const emailRegEx =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const urlRegex = /(http[s]?:\/\/)?([^\s(["<,>]*\.[^\s[",><]*)/gi;
-
 
 export default {
   data() {
@@ -67,7 +65,7 @@ export default {
         if (word.charAt(0) === '#') {
           arrayMap[index] = '<span class="important">' + word + '</span>'
         } else if (word.charAt(0) === '@') {
-          arrayMap[index] = '<span class="somebody">' + word.substring(1) + '</span>'
+          arrayMap[index] = '<span class="somebody">' + word + '</span>'
         } else if (emailRegEx.test(word)) {
           arrayMap[index] = '<span class="email">Mail</span>'
         } else if (urlRegex.test(word)) {
@@ -87,32 +85,41 @@ export default {
   <Head title="Task list" />
   <div class="content">
     <div class="add">
-      <!-- <Icon icon="mdi-light:home" /> -->
+      <img src="../../../img/plus-square.svg" alt="add" />
       <input type="text" placeholder="Type to add new task"
         v-model="content"
         v-on:focus="onFocus($event)"
         v-on:blur="onBlur($event)" />
+      <img v-if="showPreviewMenu && isDisabled" alt="add"
+        src="../../../img/avatar-disabled.svg" />
+      <img v-else-if="showPreviewMenu" alt="add"
+        src="../../../img/avatar.svg" />
     </div>
     <div class="actions" v-if="showPreviewMenu">
       <div class="shortcuts">
         <button class="btn btn-secondary has-border open-btn"
           v-bind:class="{ 'disabled': isDisabled }">
+          <img src="../../../img/maximize.svg" alt="Open" />
           Open
         </button>
         <button class="btn has-border"
           v-bind:class="{ 'disabled': isDisabled }">
+          <img src="../../../img/calendar.svg" alt="Today" />
           Today
         </button>
         <button class="btn has-border"
           v-bind:class="{ 'disabled': isDisabled }">
+          <img src="../../../img/unlock.svg" alt="Public" />
           Public
         </button>
         <button class="btn has-border"
           v-bind:class="{ 'disabled': isDisabled }">
+          <img src="../../../img/highlight.svg" alt="Highlight" />
           Highlight
         </button>
         <button class="btn has-border"
           v-bind:class="{ 'disabled': isDisabled }">
+          <img src="../../../img/count-circle.svg" alt="Estimation" />
           Estimation
         </button>
       </div>
