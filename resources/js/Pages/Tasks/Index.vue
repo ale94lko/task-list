@@ -10,6 +10,8 @@ defineProps({
 
 </script>
 <script>
+import { router } from "@inertiajs/vue3";
+
 const emailRegEx =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const urlRegex = /(http[s]?:\/\/)?([^\s(["<,>]*\.[^\s[",><]*)/gi;
@@ -58,6 +60,8 @@ export default {
       this.taskList.push(newTask)
       this.content = '';
       this.showPreview = false;
+
+      router.post('/store', newTask)
     },
     getHtmlContent(content) {
       let arrayMap = content.split(' ')
